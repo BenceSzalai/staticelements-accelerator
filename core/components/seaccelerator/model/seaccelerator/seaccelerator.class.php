@@ -1044,7 +1044,7 @@ class Seaccelerator {
 	 * @return string
 	 */
 	private function checkElementOnFilesystem($file, $class_key = '') {
-		
+
 		if (file_exists($file)) {
 			
 			// Snippets and Plugins are stored in the DB slightly different to FS, so we need to process them before comparision
@@ -1156,10 +1156,10 @@ class Seaccelerator {
 			
 			$path = str_replace($elementData['filename'], "", $elementData['static_file']);
 			$file = $this->makeStaticElementFilePath($elementData['filename'], $path, $elementData['source'], true);
-			
+
 			$elementContentFilesystem = $this->checkElementOnFilesystem($file, $elementData['classKey']);
-			$elementContentDatabase = sha1($elementData['content'] );
-			
+			$elementContentDatabase = sha1($elementData['content']);
+
 			// Is element existing on filesystem?
 			if ($elementContentFilesystem == "") {
 				$status['deleted'] = true;
