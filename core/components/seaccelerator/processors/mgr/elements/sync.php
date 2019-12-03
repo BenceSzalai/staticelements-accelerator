@@ -26,7 +26,7 @@ if ($sync) {
     $result = $modx->seaccelerator->exportElementAsStatic($elementData);
 
   } else if ($sync == "fromfile") {
-    $result = $modx->seaccelerator->updateChunkFromStaticFile($elementData);
+    $result = $modx->seaccelerator->updateElementFromStaticFile($elementData);
   }
 }
 
