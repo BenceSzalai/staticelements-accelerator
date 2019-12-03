@@ -855,8 +855,43 @@ class Seaccelerator {
     $file = $this->makeStaticElementFilePath($elementData["file"], $elementData["path"], $elementData["source"], true);
 
     $elementData["content"] = $this->getFileContent($file);
-    $elementObj = $this->modx->getObject($elementData["modClass"], $elementData["id"]);
-
+	/** @var modElement $elementObj */
+	$elementObj = $this->modx->getObject($elementData["modClass"], $elementData["id"]);
+	
+	// The switch code below triggers version tracking in VersionX plugin (and potentially other extras' features as well)
+	// ToDo: add a system setting to allow this to be turned off
+	switch ( $elementData["modClass"] ) {
+	  case "modChunk": //https://docs.modx.com/revolution/2.x/developing-in-modx/basic-development/plugins/system-events/onchunkformsave
+		  global $chunk;
+		  $chunk = $elementObj;
+		  $this->modx->invokeEvent('OnChunkFormSave', [
+			  'chunk' => $elementObj,
+			  'mode' => 'upd',
+			  'id' => $elementData["id"],
+		  ]);
+		  break;
+	  case "modTemplate":
+		  $this->modx->invokeEvent('OnTempFormSave', [
+			  'template' => $elementObj,
+			  'mode' => 'upd',
+			  'id' => $elementData["id"],
+		  ]);
+		  break;
+	  case "modSnippet":
+		  $this->modx->invokeEvent('OnSnipFormSave', [
+			  'snippet' => $elementObj,
+			  'mode' => 'upd',
+			  'id' => $elementData["id"],
+		  ]);
+		  break;
+	  case "modPlugin":
+		  $this->modx->invokeEvent('OnPluginFormSave', [
+			  'plugin' => $elementObj,
+			  'mode' => 'upd',
+			  'id' => $elementData["id"],
+		  ]);
+		  break;
+	}
     return $this->saveElementObject($elementObj, $elementData, true);
   }
 
