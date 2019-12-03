@@ -850,7 +850,7 @@ class Seaccelerator {
    * @param $elementData
    * @return mixed
    */
-  public function updateChunkFromStaticFile($elementData) {
+  public function updateElementFromStaticFile($elementData) {
 
     $file = $this->makeStaticElementFilePath($elementData["file"], $elementData["path"], $elementData["source"], true);
 
