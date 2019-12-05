@@ -248,7 +248,6 @@ class Seaccelerator {
 		return $elementsPath;
 	}
 
-
 	/**
 	 * @return array
 	 */
@@ -1205,8 +1204,7 @@ class Seaccelerator {
 		// Element has an path and is static
 		if ($elementData['static'] == true && $elementData['static_file'] != "") {
 
-			$path = str_replace($elementData['filename'], "", $elementData['static_file']);
-			$file = $this->makeStaticElementFilePath($elementData['filename'], $path, $elementData['source'], true);
+			$file = $this->getBaseFilesystemPath($elementData['source']) . $elementData['static_file'];
 
 			$elementContentFilesystem = $this->checkElementOnFilesystem($file, $elementData['classKey']);
 			$elementContentDatabase = sha1($elementData['content']);
