@@ -30,3 +30,15 @@
 ================================
 - Fix file path issues on different element source settings.
 - Fix missing asset_path
+
+
+0.1.5 unofficial_sbnc (11 December 2019)
+================================
+- Fix php file comparison for Snippets and Plugins
+- Fixes to elements grid functions
+- Fix file grid delete
+- Fix file manipulations for non-element files
+- Fixes for file path handling
+- Fix Making non-static Template Static
+- Fix: Status check for existing Static Elements
+- Improve the way file of existing static element is updated
